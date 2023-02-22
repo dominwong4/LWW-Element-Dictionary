@@ -199,6 +199,30 @@ describe('LWW Element Dictionary Testing', () => {
       });
     });
   });
+  describe('Test Lookup Function', () => {
+    describe('Condition 1: if element is in addSet and element is not in removeSet', () => {
+      it('should return true', () => {
+        const dict = new LWWElementDictionary();
+        dict.add('key1', { timestamp: 1 } as Element);
+        expect(dict.lookup('key1')).toBeTruthy();
+      });
+    });
+
+    describe('Condition 2: if element in Both Set, then if AddSet.timestamp is later then RemoveSet.timestamp', () => {
+      it('should return true', () => {
+        const dict = new LWWElementDictionary();
+        dict.add('key1', { timestamp: 2 } as Element);
+        dict.remove('key1', 1);
+        expect(dict.lookup('key1')).toBeTruthy();
+      });
+    });
+    describe('Condition 3: if Element is not in Add Set', () => {
+      it('should return false', () => {
+        const dict = new LWWElementDictionary();
+        expect(dict.lookup('non-exist-key')).toBeFalsy();
+      });
+    });
+  });
   describe('Test Merge Function', () => {
     describe('Normal Case', () => {
       //Arrange
