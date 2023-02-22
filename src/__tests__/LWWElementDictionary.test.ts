@@ -277,12 +277,23 @@ describe('LWW Element Dictionary Testing', () => {
           name: '**',
           timestamp: 2,
         } as Element);
+
+        /** Result 
+         *     
+         * AddSet(3) {
+                'cat' => { name: 'hello', timestamp: 5 },
+                'dog' => { name: 'wow', timestamp: 1 },
+                'ape' => { name: '**', timestamp: 2 }
+                } 
+           RemoveSet(0) {}
+         */
       });
-      it('Case(2), Add RemoveSet From Case(1)', () => {
+      it('Case(2), Add RemoveSet From Case(1), Adding remove rT < T=Addset, rT > T=Addset', () => {
         //Act
         master.remove('cat', 3);
-        slave.remove('cat', 6);
+        expect(master.lookup('cat')).toBeTruthy();
 
+        slave.remove('cat', 6);
         master.merge(slave);
         expect(master.getAddSet().size).toBe(3);
         expect(master.getRemoveSet().size).toBe(1);
@@ -293,6 +304,18 @@ describe('LWW Element Dictionary Testing', () => {
         });
         // Lookup return False because the latest cat in AddSet is T=5, RemoveSet is T=6
         expect(master.lookup('cat')).toBeFalsy();
+        console.log(master.getAddSet(), master.getRemoveSet());
+
+        /**
+         * Result
+         *     
+         *  AddSet(3) {
+                'cat' => { name: 'hello', timestamp: 5 },
+                'dog' => { name: 'wow', timestamp: 1 },
+                'ape' => { name: '**', timestamp: 2 }
+                } 
+            RemoveSet(1) { 'cat' => { name: 'hello', timestamp: 6 } }
+         */
       });
     });
   });
