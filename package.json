@@ -1,7 +1,7 @@
 {
   "name": "lww-element-dictionary",
   "version": "1.0.0",
-  "description": "",
+  "description": "State-based LWW Element Dictionary",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -11,8 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/dominwong4/LWW-Element-Dictionary.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Conflict-free replicated data type",
+    "CRTDs",
+    "CRTD"
+  ],
+  "author": "Dominic Wong",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dominwong4/LWW-Element-Dictionary/issues"
