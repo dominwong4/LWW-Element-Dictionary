@@ -14,11 +14,11 @@ A state-based CRDT (CvRDT) must...
 - "Monotonically increase" in state, meaning a new state only ever succeeds the current state in the value's ordering.
 - Define a merge function ("least upper bound") which is idempotent and order-independent.
 
-Different from ```LWW-Element-Set```, ```LWW-Element-Dictionary``` store Object/Dictionary which is [Element](https://github.com/dominwong4/LWW-Element-Dictionary/blob/main/src/utils/types.ts#L16) but not only storing string. It gives various data type option on using CRDT.
+Different from `LWW-Element-Set`, `LWW-Element-Dictionary` store Object/Dictionary which is [Element](https://github.com/dominwong4/LWW-Element-Dictionary/blob/main/src/utils/types.ts#L16) but not only storing string. It gives various data type option on using CRDT.
 
 ## ✨ Features
 
-- Dictionary List that works under [CRDTs prinicial](https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type)
+- Dictionary List that works under [CRDTs Principle](https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type)
 - [Add](https://github.com/dominwong4/LWW-Element-Dictionary/blob/main/src/LWWElementDictionary.ts#L20) (Only latest element will be added if key already exists)
 - [Update](https://github.com/dominwong4/LWW-Element-Dictionary/blob/main/src/LWWElementDictionary.ts#L27) (Only latest element will be updated if key already exists)
 - [Lookup](https://github.com/dominwong4/LWW-Element-Dictionary/blob/main/src/LWWElementDictionary.ts#L45) (Only element in Addset with latest timestamp can be lookup if RemoveSet has same key)
