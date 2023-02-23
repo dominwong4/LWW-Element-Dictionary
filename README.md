@@ -14,7 +14,7 @@ A state-based CRDT (CvRDT) must...
 - "Monotonically increase" in state, meaning a new state only ever succeeds the current state in the value's ordering.
 - Define a merge function ("least upper bound") which is idempotent and order-independent.
 
-Different from LWW-Element-Set, LWW-Element-Dictionary store Object/Dictionary with is [Element](https://github.com/dominwong4/LWW-Element-Dictionary/blob/main/src/utils/types.ts#L16) but not only storing string. It gives various data type option on using CRDT.
+Different from ```LWW-Element-Set```, ```LWW-Element-Dictionary``` store Object/Dictionary which is [Element](https://github.com/dominwong4/LWW-Element-Dictionary/blob/main/src/utils/types.ts#L16) but not only storing string. It gives various data type option on using CRDT.
 
 ## ✨ Features
 
