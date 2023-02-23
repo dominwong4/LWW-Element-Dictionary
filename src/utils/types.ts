@@ -50,6 +50,15 @@ export interface ILWWElementDictionary {
   add(key: string, element: Element): void;
 
   /**
+   * Update an element to the dictionary.
+   * The Logic should be the same as add
+   *
+   * @param key The key of the element.
+   * @param element The element to add.
+   */
+  update(key: string, element: Element): void;
+
+  /**
    * Removes an element from the dictionary.
    * The remove rule follows LWW
    * It will first call lookup(key) function to check if the data is exist by LWW rules

@@ -132,6 +132,58 @@ describe('LWW Element Dictionary Testing', () => {
       });
     });
   });
+  describe('Test Update Function', () => {
+    describe('Normal Case', () => {
+      describe('Case(1), add one element (T=1) and then update that element (T=2)', () => {
+        it('should be updated', () => {
+          //Arrange
+          const dict = new LWWElementDictionary();
+          const testKey = 'key1';
+          const testData: Element = {
+            string_data: 'a',
+            timestamp: 1,
+          };
+          const testUpdateData: Element = {
+            string_data: 'updated',
+            udpated: true,
+            timestamp: 2,
+          };
+
+          //Act
+          dict.add('key1', testData);
+          dict.update('key1', testUpdateData);
+
+          //Assert
+          expect(dict.lookup(testKey)).toBeTruthy();
+          expect(dict.getAddSet().get(testKey)).toEqual(testUpdateData);
+        });
+      });
+      describe('Case(2), add one element (T=2) and then update that element (T=1)', () => {
+        it('should not be updated', () => {
+          //Arrange
+          const dict = new LWWElementDictionary();
+          const testKey = 'key1';
+          const testData: Element = {
+            string_data: 'a',
+            timestamp: 2,
+          };
+          const testUpdateData: Element = {
+            string_data: 'updated',
+            udpated: true,
+            timestamp: 1,
+          };
+
+          //Act
+          dict.add('key1', testData);
+          dict.update('key1', testUpdateData);
+
+          //Assert
+          expect(dict.lookup(testKey)).toBeTruthy();
+          expect(dict.getAddSet().get(testKey)).toEqual(testData);
+        });
+      });
+    });
+  });
   describe('Test Remove & Lookup  Function', () => {
     describe('Normal Case', () => {
       it('Case(1), add one data to addSet (T=1) and then add to removeSet(T=2)', () => {

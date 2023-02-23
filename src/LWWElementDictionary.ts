@@ -24,6 +24,10 @@ class LWWElementDictionary implements ILWWElementDictionary {
     }
   }
 
+  update(key: string, element: Element): void {
+    this.add(key, element);
+  }
+
   remove(key: string, timestamp: Timestamp): void {
     // prelookup, skip it if lookup return false
     if (!this.lookup(key)) return;
